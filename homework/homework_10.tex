@@ -1,0 +1,129 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{lmodern}
+
+\title{ECO 420Y --- Homework 6}
+\author{Joe White}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section*{1.\quad Main Idea of the Fama--French Three-Factor Model}
+
+The Fama--French Three-Factor Model extends the CAPM by adding two additional
+systematic risk factors that help explain cross-sectional differences in stock returns.
+The three factors are:
+
+\begin{itemize}
+    \item \textbf{Market excess return (MKT):} \(R_M - r_f\).
+    \item \textbf{SMB (Small Minus Big):} return on small firms minus big firms.
+    \item \textbf{HML (High Minus Low):} return on value stocks minus growth stocks.
+\end{itemize}
+
+The model for stock \(i\) states:
+\[
+R_i - r_f
+= \alpha_i
++ \beta_{M,i} (R_M - r_f)
++ \beta_{SMB,i} \cdot SMB
++ \beta_{HML,i} \cdot HML
++ \varepsilon_i.
+\]
+
+Where:
+\begin{itemize}
+    \item \(\beta_{M,i}\): sensitivity to market risk, similar to beta in CAPM.
+    \item \(\beta_{SMB,i}\): exposure to the size effect; positive values behave like small firms.
+    \item \(\beta_{HML,i}\): exposure to the value effect; positive values behave like value stocks.
+\end{itemize}
+
+\section*{2.\quad Estimating the Factor Loadings}
+
+To estimate (\(\beta_M, \beta_{SMB}, \beta_{HML}\)) for a stock:
+
+\begin{enumerate}
+    \item Collect historical time series of:
+    \begin{itemize}
+        \item stock returns \(R_i\),
+        \item risk-free rate \(r_f\),
+        \item Fama--French factors: \(MKT, SMB, HML\).
+    \end{itemize}
+
+    \item Compute the excess return:
+    \[
+    R_i^e = R_i - r_f.
+    \]
+
+    \item Run the time-series regression:
+    \[
+    R_i^e
+    = \alpha_i
+    + \beta_{M,i} MKT
+    + \beta_{SMB,i} SMB
+    + \beta_{HML,i} HML
+    + \varepsilon_i.
+    \]
+
+    \item The fitted coefficients are the estimated factor loadings.
+\end{enumerate}
+
+\section*{3.\quad Expected Return Under the FFTFM}
+
+Given:
+\[
+r_f = 0.03, \qquad
+E[R_M] = 0.09, \qquad
+E[SMB] = 0.02, \qquad
+E[HML] = 0.01,
+\]
+\[
+\beta_M = 1.1,\qquad
+\beta_{SMB} = 0.5,\qquad
+\beta_{HML} = -0.3.
+\]
+
+The Fama--French expected return is:
+
+\[
+\begin{aligned}
+E[R_i]
+&= r_f
++ \beta_M (E[R_M] - r_f)
++ \beta_{SMB} \, E[SMB]
++ \beta_{HML} \, E[HML] \\[6pt]
+&= 0.03
++ 1.1(0.09 - 0.03)
++ 0.5(0.02)
+- 0.3(0.01).
+\end{aligned}
+\]
+
+Computuing each term:
+
+\[
+\begin{aligned}
+\text{Market term:} &\quad 1.1 \times 0.06 = 0.066, \\
+\text{SMB term:} &\quad 0.5 \times 0.02 = 0.010, \\
+\text{HML term:} &\quad -0.3 \times 0.01 = -0.003.
+\end{aligned}
+\]
+
+Then plugging in:
+
+\[
+E[R_i]
+= 0.03 + 0.066 + 0.010 - 0.003
+= 0.103.
+\]
+
+\[
+\boxed{E[R_i] = 10.3\%}
+\]
+
+\section*{Final Answer}
+
+\textbf{The expected return predicted by the Fama--French Three-Factor Model is 10.3\%.}
+
+\end{document}
