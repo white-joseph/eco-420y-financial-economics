@@ -1,0 +1,96 @@
+---
+title: "ECO 420Y — Homework 7"
+author: "Joe White"
+date: "`r format(Sys.Date())`"
+output:
+  pdf_document:
+    latex_engine: xelatex
+geometry: margin=1in
+fontsize: 11pt
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  echo = TRUE,
+  message = FALSE,
+  warning = FALSE,
+  fig.width = 7,
+  fig.height = 4.5
+)
+```
+
+# Question 1
+
+```{r q1}
+#============================ Question 1 =======================================
+library(quantmod)
+library(tseries)
+library(zoo)
+
+getSymbols("SP500", src = "FRED")
+
+sp_zoo <- SP500
+sp_raw <- coredata(sp_zoo)
+sp_num <- as.numeric(sp_raw)
+sp     <- na.omit(sp_num)
+
+dates_clean <- index(sp_zoo)[!is.na(sp_raw)]
+sp_ts <- zoo(sp, order.by = dates_clean)
+
+plot(sp_ts,
+     main = "SP500 Index from FRED",
+     ylab = "Index level",
+     xlab = "Date")
+```
+
+# Question 2
+
+```{r q2}
+#============================ Question 2 =======================================
+
+adf_sp  <- adf.test(sp, alternative = "stationary", k = 1)
+adf_sp
+
+dsp_raw <- diff(sp)
+dsp     <- na.omit(dsp_raw)
+
+adf_dsp <- adf.test(dsp, alternative = "stationary", k = 1)
+adf_dsp
+```
+
+From the ADF tests:
+
+- For the SP500 level series, the p-value is `r round(adf_sp$p.value, 4)`, so we do not reject the unit-root null. The level has a unit root (nonstationary).
+- For the first difference, the p-value is `r round(adf_dsp$p.value, 4)`, so we do reject the unit-root null. The differenced series is stationary.
+
+
+# Question 3
+
+```{r q3}
+#============================ Question 3 =======================================
+
+fit_ar1 <- arima(dsp, order = c(1, 0, 0))
+fit_ar1
+
+Box.test(fit_ar1$residuals, lag = 1, type = "Ljung")
+```
+
+For the AR(1) model, the Ljung–Box p-value is `r round(Box.test(fit_ar1$residuals, lag = 1, type = "Ljung")$p.value, 4)`.  
+
+Since this is greater than 0.05, we do not reject the null of no autocorrelation in the residuals, so the AR(1) model is adequate for the first difference of SP500.
+
+# Question 4
+
+```{r q4}
+#============================ Question 4 =======================================
+
+fc_ar1 <- predict(fit_ar1, n.ahead = 1)
+
+fc_value <- fc_ar1$pred[1]
+fc_se    <- fc_ar1$se[1]
+
+cat("One-step-ahead forecast of the first difference of SP500 is:",
+    round(fc_value, 4), "\n")
+cat("Standard error of the forecast is:",
+    round(fc_se, 4), "\n")
+```
