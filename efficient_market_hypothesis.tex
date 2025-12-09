@@ -1,0 +1,161 @@
+\documentclass[11pt, letterpaper]{article}
+
+% -------------------- Packages --------------------
+\usepackage[margin=1in]{geometry}
+\usepackage{newtxtext}
+\usepackage{newtxmath}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\doublespacing
+
+% -------------------- Code Listing Setup --------------------
+\lstset{
+  language=R,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{teal},
+  numbers=left,
+  numberstyle=\tiny,
+  breaklines=true,
+  frame=single,
+  tabsize=2,
+  showstringspaces=false
+}
+
+% -------------------- Title --------------------
+\title{Testing the Weak-Form Efficient Market Hypothesis:\\
+Evidence from Bitcoin Daily Prices}
+\author{Joe White \\ Miami University}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% ================================================================
+\section{Introduction}
+
+Bitcoin has emerged as one of the most actively traded and closely watched financial assets of the past decade. Its extreme volatility, decentralized nature, and rapid adoption make it an interesting case study for empirical asset-pricing research. A central question in finance is whether asset prices reflect available information efficiently. According to the weak-form Efficient Market Hypothesis (EMH), all publicly available historical price information should already be incorporated into the current price. If markets are weak-form efficient, then past price changes should not contain meaningful predictive content about future returns.
+
+This paper examines whether Bitcoin’s daily price behavior is consistent with the weak-form EMH. Using daily U.S.\ dollar Bitcoin prices obtained from the Federal Reserve Economic Data (FRED) database, I analyze the time-series properties of Bitcoin prices and returns from 2014 to the present. I test for unit roots, estimate rolling AR(1) models to detect return predictability, and compute rolling Box--Ljung statistics to measure autocorrelation. Together, these methods provide a clear assessment of whether historical return patterns can be used to forecast future returns.
+
+The results show that while Bitcoin prices behave like a random walk and returns appear stationary, there is very little evidence of sustained linear predictability in daily returns. These findings are consistent with the weak-form EMH: past price information has limited ability to forecast future Bitcoin movements.
+
+% ================================================================
+\section{Literature Review}
+
+The Efficient Market Hypothesis, formalized by Fama (1970), posits that competitive financial markets quickly incorporate new information into asset prices. The weak form of EMH specifically asserts that historical prices and returns cannot be used to generate excess risk-adjusted returns. Seminal works by Samuelson (1965) and Malkiel (2003) argue that asset prices should follow a random walk if markets are informationally efficient.
+
+Empirical research has produced mixed evidence. Many mature equity markets appear to behave consistently with the weak-form EMH, though short-term return predictability and momentum effects have been documented, most notably by Jegadeesh and Titman (1993). Emerging markets often display stronger deviations from efficiency, including higher autocorrelation and delayed response to news.
+
+In the context of cryptocurrencies, the literature is still developing. Early studies found that Bitcoin exhibited substantial autocorrelation and market frictions during its early years, suggesting inefficiency. More recent research, however, indicates that as trading volume increased and institutional participation grew, Bitcoin became more informationally efficient. Urquhart (2016) reported that Bitcoin was initially inefficient but increasingly conformed to EMH over time. Nadarajah and Chu (2017) found that Bitcoin returns are largely unpredictable using standard linear models, despite high volatility.
+
+This paper contributes to the literature by updating the analysis using the most recent data available and applying rolling-window methods that allow efficiency to vary over time.
+
+% ================================================================
+\section{Data}
+
+The dataset consists of daily closing U.S.\ dollar prices for Bitcoin, retrieved from the FRED database under the ticker \texttt{CBBTCUSD}. The sample begins in December 2014 and runs through the most recent available date. Prices are recorded once per day, and some early observations contain missing values, which are removed prior to analysis.
+
+Daily log returns are calculated as
+\[
+r_t = \log(P_t) - \log(P_{t-1}),
+\]
+where $P_t$ is the daily closing price. Log returns are standard in financial econometrics because they allow returns to be treated as continuously compounded and facilitate time-series modeling.
+
+Summary statistics show that Bitcoin prices have grown dramatically on average but exhibit extremely large variability. Returns have a mean close to zero, consistent with a high-frequency asset, and display high volatility relative to traditional financial markets. The minimum and maximum daily returns reveal substantial tail risk, characteristic of the cryptocurrency market.
+
+Plots of the price and return series visually confirm the nonstationary nature of prices and the erratic, mean-zero behavior of returns. These graphical patterns align with expectations under the weak-form EMH: price levels wander over time, while returns do not exhibit clear patterns.
+
+% ================================================================
+\section{Methods}
+
+To evaluate whether Bitcoin behaves in a weak-form efficient manner, I perform three empirical tests.
+
+\subsection{Unit Root Tests}
+
+If prices follow a random walk, they should be nonstationary with a unit root, while returns should be stationary. I apply the Augmented Dickey--Fuller (ADF) test with one lag to both the price series and the return series. Rejecting the unit root null for returns but not for prices is consistent with weak-form efficiency.
+
+\subsection{Rolling AR(1) Return Predictability}
+
+To detect short-run linear dependence in returns, I estimate rolling 28-day AR(1) models of the form
+\[
+r_t = \phi_0 + \phi_1 r_{t-1} + \varepsilon_t.
+\]
+For each window, I record the $t$-statistic on $\phi_1$. Under the weak-form EMH, $\phi_1$ should be near zero and the associated $t$-statistics should fall within the $\pm 1.96$ bounds corresponding to 5\% significance. This rolling-window approach allows for time-varying efficiency.
+
+\subsection{Rolling Box--Ljung Autocorrelation Tests}
+
+I also apply the Box--Ljung test for first-order autocorrelation in rolling 28-day windows. For each window, I record the $p$-value of the null hypothesis of no autocorrelation. Under the weak-form EMH, $p$-values should typically exceed 0.05, indicating a lack of predictable structure in returns.
+
+% ================================================================
+\section{Results}
+
+\subsection{Unit Root Test Results}
+
+The ADF test on Bitcoin prices yields a test statistic of approximately $-1.99$ with a $p$-value of 0.583. Thus, I fail to reject the null hypothesis of a unit root, indicating that Bitcoin prices behave like a nonstationary random walk. The ADF test on Bitcoin returns yields a test statistic of approximately $-46.68$ with a $p$-value less than 0.01, strongly rejecting the unit root null and indicating that returns are stationary. This combination of results is consistent with the predictions of the weak-form EMH.
+
+\subsection{Rolling AR(1) Estimates}
+
+Across the rolling 28-day windows, the $t$-statistics on the AR(1) coefficient fluctuate around zero and only occasionally exceed the $\pm 1.96$ significance thresholds. These crossings are isolated and short-lived, with no sustained periods of significant predictability. This indicates that lagged returns have little explanatory power for current returns, consistent with weak-form efficiency.
+
+\subsection{Rolling Box--LLung Results}
+
+The rolling Box--Ljung $p$-values remain above 0.05 in the majority of windows. While there are occasional dips below the significance threshold, they are brief and nonpersistent. This suggests that Bitcoin returns do not exhibit meaningful autocorrelation over time, again supporting weak-form efficiency.
+
+% ================================================================
+\section{Discussion}
+
+Across all methods, Bitcoin exhibits the characteristic empirical features of an asset that is weak-form efficient. Prices follow a stochastic trend and are difficult to forecast, while returns behave as a stationary process with little serial dependence. Both AR(1) estimates and autocorrelation tests reveal minimal return predictability. These findings suggest that, despite its volatility and unique trading environment, Bitcoin’s price dynamics broadly align with the predictions of the weak-form EMH at the daily frequency.
+
+As the cryptocurrency market has matured, trading volumes have increased and participation has broadened, leading to improved informational efficiency. The results of this study are consistent with that evolution, indicating that historical return-based trading strategies are unlikely to generate abnormal profits.
+
+% ================================================================
+\section{Conclusion}
+
+This paper tests the weak-form Efficient Market Hypothesis using daily Bitcoin prices from 2014 onward. Unit root tests indicate that prices behave like a random walk while returns are stationary. Rolling AR(1) regressions and rolling Box--Ljung tests provide no evidence of sustained return predictability. Overall, Bitcoin’s daily returns appear largely consistent with weak-form market efficiency.
+
+Future research could incorporate higher-frequency intraday data, nonlinear forecasting models, or volatility-based measures to test for more subtle departures from efficiency. Additionally, comparing Bitcoin to other major cryptocurrencies or to traditional equity indices may yield insights into differences in market structure and maturity.
+
+% ================================================================
+\begin{thebibliography}{9}
+
+\bibitem{fama1970}
+Fama, Eugene F.\ (1970).
+``Efficient Capital Markets: A Review of Theory and Empirical Work.''
+\textit{Journal of Finance}, 25(2), 383--417.
+
+\bibitem{malkiel2003}
+Malkiel, Burton G.\ (2003).
+``The Efficient Market Hypothesis and Its Critics.''
+\textit{Journal of Economic Perspectives}, 17(1), 59--82.
+
+\bibitem{urquhart2016}
+Urquhart, Andrew.\ (2016).
+``The Inefficiency of Bitcoin.''
+\textit{Economics Letters}, 148, 80--82.
+
+\bibitem{nadarajah2017}
+Nadarajah, Saralees., \& Chu, Jeffrey.\ (2017).
+``On the Efficiency of Bitcoin.''
+\textit{Economics Letters}, 150, 6--9.
+
+\end{thebibliography}
+
+% ================================================================
+\appendix
+\section*{Appendix A: R Code}
+
+% Paste your full R script inside lstlisting here when ready.
+
+\begin{lstlisting}
+% R code goes here
+\end{lstlisting}
+
+\end{document}
