@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.11.17)  8 DEC 2025 13:37
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.4) (preloaded format=xelatex 2025.11.17)  10 DEC 2025 01:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -837,102 +837,115 @@ LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
 
 ]
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `OT1/minntx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `OML/ntxmi/m/it' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `LMS/ntxsy/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `LMX/ntxexx/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxmia/m/it' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsym/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxsyc/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 10.95pt on input line 67.
+(Font)              scaled to size 10.95pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 8.0pt on input line 67.
+(Font)              scaled to size 8.0pt on input line 63.
 LaTeX Font Info:    Font shape `U/ntxexa/m/n' will be
-(Font)              scaled to size 6.1pt on input line 67.
+(Font)              scaled to size 6.1pt on input line 63.
 
 
 [2]
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/b/n' will be
-(Font)              scaled to size 12.0pt on input line 81.
+File: plots/bitcoin_price_return.png Graphic file (type bmp)
+<plots/bitcoin_price_return.png>
 
 
-[3]
-
-[4]
-Overfull \hbox (13.72232pt too wide) in paragraph at lines 124--125
-[]\TU/TeXGyreTermesX(0)/m/n/10.95 Future research could incorporate higher-freq
-uency intraday data, nonlinear forecasting models, or volatility-
+[3] (btc_descriptive_stats.tex
+Overfull \hbox (9.13364pt too wide) in paragraph at lines 5--13
+ [][] 
  []
 
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/it' will be
-(Font)              scaled to size 10.95pt on input line 132.
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 158.
-LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 158.
+)
+
+[4]
+File: plots/bitcoin_rolling_tvalues.png Graphic file (type bmp)
+<plots/bitcoin_rolling_tvalues.png>
 
 
-[5] (efficient_market_hypothesis.aux)
+[5]
+File: plots/bitcoin_rolling_pvalues.png Graphic file (type bmp)
+<plots/bitcoin_rolling_pvalues.png>
+
+
+[6]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 144.
+ (emh.R
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 1.
+LaTeX Font Info:    Font shape `TU/TeXGyreTermesX(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 1.
+
+
+[7]
+
+[8]
+
+[9]
+
+[10]
+
+[11]
+
+[12])
+
+[13] (efficient_market_hypothesis.aux)
  ***********
 LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2020/03/25>
  ***********
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `efficient_market_hypothesis.out' has chan
-ged.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `efficient_market_hypothesis.out':
-(rerunfilecheck)             Before: 52293021247ECD7E10FDEF92753AD36A;2159
-(rerunfilecheck)             After:  8BBFC90DFBA31E7DB524AA0C96A81623;1843.
+Package rerunfilecheck Info: File `efficient_market_hypothesis.out' has not cha
+nged.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 17665 strings out of 403196
- 305870 string characters out of 5455919
- 932427 words of memory out of 5000000
- 45953 multiletter control sequences out of 15000+600000
- 651873 words of font info for 110 fonts, out of 8000000 for 9000
+ 17763 strings out of 403196
+ 307398 string characters out of 5455919
+ 1141427 words of memory out of 5000000
+ 46041 multiletter control sequences out of 15000+600000
+ 651857 words of font info for 108 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 75i,6n,96p,700b,1710s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,8n,96p,816b,2430s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on efficient_market_hypothesis.pdf (5 pages).
+Output written on efficient_market_hypothesis.pdf (13 pages).
