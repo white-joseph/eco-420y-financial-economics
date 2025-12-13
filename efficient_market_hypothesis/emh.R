@@ -1,6 +1,5 @@
 ############################################################
-## ECO 420Y Project – Testing EMH for Bitcoin (Part II)
-## R code for Sections 1–4
+## ECO 420Y Project (Part II)
 ############################################################
 
 ## Packages
@@ -30,10 +29,6 @@ head(btc_price_xts)
 
 ############################################################
 ## Section 2: Statistical analysis
-## - daily returns
-## - plots
-## - descriptive statistics
-## - unit root tests
 ############################################################
 
 ## Daily log returns
@@ -93,12 +88,12 @@ latex_tab <- xtable(
 
 tex_path <- file.path(base_dir, "btc_descriptive_stats.tex")
 
-# Capture the LaTeX table as a character vector
+# Capture the LaTeX table
 latex_lines <- capture.output(
   print(latex_tab, type = "latex", include.rownames = TRUE)
 )
 
-# Write those lines to the .tex file (same style as your TWFE tables)
+# Write to .tex
 writeLines(latex_lines, tex_path, useBytes = TRUE)
 
 
@@ -111,7 +106,6 @@ adf_return
 
 ############################################################
 ## Section 3: Rolling AR(1) t-values (window size = 28)
-## y_t = phi_0 + phi_1 y_{t-1} + error_t
 ############################################################
 
 r     <- btc_ret

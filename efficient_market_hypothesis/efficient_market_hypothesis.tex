@@ -11,6 +11,7 @@
 \usepackage{url}
 \usepackage{xcolor}
 \usepackage{listings}
+%\usepackage{lstlinebgrd}
 
 \doublespacing
 
@@ -21,19 +22,17 @@
   keywordstyle=\color{blue},
   commentstyle=\color{gray},
   stringstyle=\color{teal},
-  numbers=left,
-  numberstyle=\tiny,
+  numbers=none,
   breaklines=true,
-  frame=single,
+  frame=none,
   tabsize=2,
   showstringspaces=false
 }
 
 % -------------------- Title --------------------
-\title{Testing the Weak-Form Efficient Market Hypothesis:\\
+\title{Testing the Weak Form Efficient Market Hypothesis:\\
 Evidence from Bitcoin Daily Prices}
-\author{Joe White \\ Miami University}
-\date{\today}
+\date{}
 
 \begin{document}
 \maketitle
@@ -41,32 +40,29 @@ Evidence from Bitcoin Daily Prices}
 % ================================================================
 \section*{Introduction}
 
-The Efficient Market Hypothesis (EMH) is one of the most influential ideas in modern financial economics, and it provides the foundation for understanding how asset prices incorporate information. Under the weak form of EMH, historical price data and past returns should not help investors predict future price movements. If markets are efficient in this sense, return patterns such as momentum, reversals, or seasonality should not provide a reliable way to earn above-average risk-adjusted returns. 
+The Efficient Market Hypothesis (EMH) is one of the most influential ideas in modern financial economics. It describes how asset prices reflect information. Under the weak form of EMH, historical price data and past returns should not help investors predict future price movements. If markets are efficient in this sense, return patterns should not provide a reliable way to earn above average risk adjusted returns. 
 
-This project examines whether Bitcoin’s daily price behavior is consistent with these predictions by testing for return predictability, autocorrelation, and randomness in the time-series data. Before turning to the empirical analysis, I provide a brief literature review of Burton Malkiel’s discussion of EMH and its critics, which highlights the core arguments for and against return predictability in financial markets.
-
-\section*{Literature Review}
-
-Malkiel’s article provides an overview of the Efficient Market Hypothesis, its development, and the main empirical challenges raised by critics. He begins by explaining the central idea behind EMH: financial markets rapidly incorporate new information into prices, making it extremely difficult for investors to consistently outperform the market using either technical analysis (trading based on past prices and charts) or fundamental analysis (trading based on financial statements and valuation ratios). If prices fully reflect available information, then they should follow what is known as a “random walk,” meaning that future price changes depend only on new, unpredictable information rather than on past price patterns.
-
-Malkiel reviews a wide range of empirical studies that appear to challenge the randomness of returns. These include short-term momentum effects, where prices continue moving in the same direction for brief periods, and long-term reversals, where stocks that perform very poorly eventually outperform. He also discusses valuation-based predictability, such as dividend yields or price–earnings ratios forecasting long-run returns, as well as well-known market “anomalies” like the January effect or day-of-the-week patterns. Behavioral economists argue that psychological factors—overconfidence, herd behavior, or underreaction to news—can create predictable return patterns inconsistent with strict market efficiency.
-
-However, Malkiel emphasizes that even when predictable patterns are documented statistically, they rarely translate into profitable trading strategies. Any predictable pattern is usually too small to survive real-world trading costs, and once an anomaly becomes widely known, it tends to shrink or disappear as investors try to exploit it. Many patterns also arise from data mining, survivorship bias, or specific modeling choices. Importantly, he notes that professional portfolio managers—those best positioned to exploit inefficiencies—consistently fail to outperform passive index funds after adjusting for risk, which supports the idea that markets remain broadly efficient.
-
-Malkiel concludes that while markets are not perfectly rational and occasionally display bubbles or mispricing, these episodes do not provide systematic opportunities for earning abnormal returns. In this sense, the weak-form EMH remains largely intact: even if some return predictability exists in theory, it is not strong, stable, or exploitable enough to undermine market efficiency. This perspective directly informs the empirical analysis in this project. If EMH holds for Bitcoin, its daily returns should behave much like noise—showing little autocorrelation and no stable patterns that could be used to forecast future price movements.
+This project asks whether Bitcoin’s daily price behavior fits this idea by looking at return predictability, autocorrelation, and randomness in the time series data. Before turning to the data, I briefly review Burton Malkiel’s discussion of EMH and its critics, which sets up the arguments for and against return predictability in financial markets.
 
 % ================================================================
-\section*{Data and Statistical Analysis (Sections 1 and 2)}
+\section*{Literature Review}
 
-For the empirical analysis, I use daily U.S. dollar prices for Bitcoin from the Federal Reserve Bank of St.~Louis (FRED) database. The specific series is the closing price of Bitcoin in U.S.~dollars with the code \texttt{CBBTCUSD}. I download the full available sample of daily observations and load it into \texttt{R} using the \texttt{quantmod} package. The raw price series begins in December 2014 and extends through the most recent available trading day at the time of the analysis.
+Malkiel’s article gives an overview of the Efficient Market Hypothesis, its development, and the main challenges raised by critics. He starts with the central idea behind EMH: financial markets quickly incorporate new information into prices, which makes it very hard for investors to consistently beat the market using either technical analysis (trading based on past prices and charts) or fundamental analysis (trading based on financial statements and valuation ratios). If prices fully reflect available information, they should follow a “random walk,” so that future price changes depend only on new, unpredictable information rather than past price patterns.
 
-To study the behavior of returns, I transform the price series into daily log returns. The return on day $t$ is computed as
-\[
-  r_t = \log(P_t) - \log(P_{t-1}),
-\]
-where $P_t$ is the Bitcoin price on day $t$. This transformation has two advantages: it scales returns in percentage terms and makes them easier to compare across time when the level of the price changes dramatically.
+Malkiel reviews studies that seem to challenge this view. These include short term momentum effects, where prices continue moving in the same direction for a while, and long term reversals, where past losers eventually outperform. He also discusses valuation based predictability, such as dividend yields or price earnings ratios forecasting long run returns, along with well known market “anomalies.” Economists beleive that overconfidence, herd behavior, and underreaction to news as possible sources of predictable patterns in returns.
 
-Figure~\ref{fig:price_return} shows the time series of the Bitcoin price and the corresponding daily log return. The price plot highlights large swings over time, including long periods of rapid increase and sharp crashes. In contrast, the daily returns fluctuate tightly around zero and alternate frequently between positive and negative values, which is visually consistent with a noisy process.
+Even so, Malkiel argues that these patterns rarely translate into real trading strategies. The effects are usually small compared to trading costs, and once an anomaly becomes widely known, it tends to fade as investors try to exploit it. Many findings also reflect data mining, survivorship bias, or modeling choices. He notes that professional portfolio managers usually fail to outperform passive index funds after adjusting for risk. This supports the idea that markets are fairly efficient.
+
+Malkiel concludes that markets are not perfectly rational and sometimes display bubbles or mispricing, but these episodes do not provide systematic opportunities for earning abnormal returns. In that sense, the weak form EMH remains mostly intact. Even if some predictability exists, it is not strong or stable enough to undermine market efficiency. If EMH holds for Bitcoin, its daily returns should look noisy, with little autocorrelation and no stable patterns that could be used to forecast future movements.
+
+% ================================================================
+\section*{Data and Statistical Analysis}
+
+To study whether Bitcoin’s price movements are predictable, I use daily U.S.~dollar prices from the Federal Reserve Bank of St.~Louis (FRED). The data series is the closing price of Bitcoin in dollars. I download the full set of available daily observations and load them into \texttt{R}. The data begins in December 2014 and run through the most recent trading day at the time of the analysis.
+
+Because investors care about gains and losses, I focus on daily returns. A daily return measures how much the price changed from one day to the next, expressed in percentage terms. I work with logged returns, which is a standard way to measure today’s price change relative to yesterday’s price.
+
+Figure~\ref{fig:price_return} shows two time series: Bitcoin’s daily price (top) and the daily log return (bottom). The price moves over a wide range, with long stretches of rapid growth and sharp crashes. In contrast, the daily returns jump up and down around zero, switching frequently between gains and losses. The return series looks noisy and does not show an obvious pattern or trend.
 
 \begin{figure}[h!]
   \centering
@@ -75,71 +71,81 @@ Figure~\ref{fig:price_return} shows the time series of the Bitcoin price and the
   \label{fig:price_return}
 \end{figure}
 
-Table~\ref{tab:btc_stats} reports descriptive statistics for the price and daily log return. The average Bitcoin price over the sample is about \$27{,}241, with a very large standard deviation of roughly \$31{,}562. The minimum observed price is \$120, and the maximum exceeds \$124{,}000, reflecting the extreme growth and volatility of Bitcoin over the past decade. 
-
-The behavior of returns is quite different. The mean daily log return is about 0.0014, which corresponds to roughly 0.14\% per day. The standard deviation of returns is about 0.0386, or 3.86\% per day, indicating substantial day-to-day volatility. The minimum daily return in the sample is approximately $-0.77$, and the maximum is about $0.53$, meaning that on some days the price fell by more than 70\% or rose by more than 50\%. These large swings reflect the speculative and risky nature of Bitcoin trading.
+To summarize these patterns, I compute basic descriptive statistics for both the price and the daily return. These include the average, the typical size of fluctuations (standard deviation), and the minimum and maximum values observed in the sample. The full results are shown in Table~\ref{tab:btc_stats}.
 
 \input{btc_descriptive_stats.tex}
 
-To formally evaluate whether the price and return series are stationary, I conduct Augmented Dickey–Fuller (ADF) unit root tests. For the price series, the ADF test statistic is approximately $-1.96$ with a $p$-value of about 0.59. This means we cannot reject the hypothesis that the Bitcoin price contains a unit root and is non-stationary. In plain terms, the price level tends to wander over time rather than fluctuating around a stable long-run mean.
+The table shows that the average Bitcoin price over the sample is about \$27{,}241, with a very large standard deviation of roughly \$31{,}562. The price ranges from a minimum of \$120 to a maximum of more than \$124{,}000, which confirms that Bitcoin has experienced enormous long run swings in value.
 
-For the daily returns, the ADF test statistic is approximately $-45.6$ with a $p$-value smaller than 0.01. In this case, we strongly reject the presence of a unit root and conclude that the return series is stationary. This result is consistent with the weak-form EMH: even though the price itself drifts and trends over time, the day-to-day returns behave more like a stable, mean-reverting noise process.
+The daily returns behave differently. The mean daily return is about 0.0014, or roughly 0.14\% per day. The standard deviation of daily returns is about 0.0386, or 3.86\% per day, which shows substantial day to day volatility. The most extreme daily losses and gains are large in magnitude, reflecting that Bitcoin is a risky asset.
+
+I also use a standard test to check whether the price and return series are stable over time or tend to wander. For the price series, the test indicates that the price does not settle around a fixed long run level; instead, it drifts, which is typical for asset prices. For the return series, the test suggests that the overall pattern of ups and downs is relatively stable over time, even though individual movements are noisy. In other words, Bitcoin’s price moves around a lot and does not come back to a fixed level, but the daily percentage changes themselves behave in a fairly consistent way over the sample.
+
+This sets up the main question of the project: \emph{does knowing yesterday’s return help us predict today’s return?} The next sections look directly at this idea.
 
 % ================================================================
-\section*{Rolling AR(1) Analysis (Section 3)}
+\section*{Can Yesterday Predict Today}
 
-To investigate short-run predictability in Bitcoin returns, I estimate a simple autoregressive model of order one, AR(1), on rolling windows of the data. The model is
-\[
-  r_t = \phi_0 + \phi_1 r_{t-1} + \varepsilon_t,
-\]
-where $r_t$ is the daily log return on day $t$, $r_{t-1}$ is the previous day's return, and $\varepsilon_t$ is a random error term. The key parameter of interest is $\phi_1$, which measures whether today's return tends to move in the same direction as yesterday's return. Under the weak-form EMH, $\phi_1$ should be close to zero, meaning that knowing yesterday’s return does not help predict today’s return.
+A simple way to test for predictability is to ask whether today’s return tends to move in the same direction as yesterday’s return. Under the weak form EMH, the answer should be no. Yesterday’s move should not give us useful information about today’s move.
 
-Rather than estimating this model once for the full sample, I use rolling windows of 28 consecutive trading days. For each window, I run the AR(1) regression and record the $t$-statistic for $\phi_1$. This produces a time series of $t$-values that shows how the evidence for or against predictability changes over time.
+To examine this, I use a rolling window of 28 days at a time:
+\begin{enumerate}
+  \item Take the first 28 days of returns and fit a simple model that relates today’s return to yesterday’s return.
+  \item Record how strong that relationship is.
+  \item Slide the 28 day window forward by one day and repeat the analysis.
+  \item Continue this process through the entire sample.
+\end{enumerate}
 
-Figure~\ref{fig:rolling_t} plots the $t$-statistic for $\phi_1$ across rolling windows, along with horizontal lines at $-1.96$ and $+1.96$. These lines correspond to the 5\% significance cutoff in a standard normal distribution. When the $t$-statistic falls between $-1.96$ and $+1.96$, we cannot reject the hypothesis that $\phi_1 = 0$ at the 5\% level. When the $t$-statistic lies outside this band, the lagged return appears significantly predictive within that window.
+For each window, I compute a t-statistic that measures how strong the link is between today’s return and yesterday’s return. A t-statistic near zero suggests no meaningful relationship. Larger positive or negative values might suggest that knowing yesterday’s return helps predict today’s return.
+
+Figure~\ref{fig:rolling_t} plots these t-statistics over time. The two horizontal lines mark common cutoffs used in practice. When the t-statistic stays between these lines, there is no strong evidence of predictability in that window. When it moves outside the band, there is stronger evidence of a relationship.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{plots/bitcoin_rolling_tvalues.png}
-  \caption{Rolling 28-day AR(1) $t$-statistics for the lagged return coefficient.}
+  \caption{Rolling 28 day statistics measuring whether yesterday's return helps predict today's return.}
   \label{fig:rolling_t}
 \end{figure}
 
-Overall, most of the $t$-statistics cluster around zero and remain inside the $[-1.96, 1.96]$ band. There are some windows where the $t$-values temporarily move outside the band, indicating short periods where lagged returns appear statistically significant. However, these episodes are sporadic and do not persist for long stretches of time. 
-
-From a non-specialist perspective, the main message is that Bitcoin returns do not show strong or stable predictability from one day to the next. Any apparent predictability that does appear is localized to short windows and could easily be the result of random fluctuations rather than a reliable trading rule. This pattern is broadly consistent with the weak-form EMH, which allows for occasional deviations from randomness but rules out a stable, exploitable relationship between past and future returns.
+Most of the t-statistics stay inside the band, which means that in most months we do not see a strong link between yesterday’s return and today’s return. There are a few short periods where the line jumps above or below the band, but these episodes are brief and do not last.
 
 % ================================================================
-\section*{Rolling Box--Ljung Tests (Section 4)}
+\section*{A Second Check for Patterns in Returns}
 
-As a second approach to testing for return predictability, I apply the Box–Ljung test for autocorrelation to rolling windows of the daily returns. For each 28-day window, I test whether the returns are uncorrelated at lag 1. The null hypothesis of the Box–Ljung test is that there is no autocorrelation; a low $p$-value (below 0.05) indicates evidence of autocorrelation, while a high $p$-value suggests that the returns look like uncorrelated noise.
+To check the results from the previous section, I use another standard tool that looks for patterns in returns over time, the Box--Ljung test. It asks whether the returns in a given window look random or whether there is some detectable pattern that links one day’s return to another.
 
-Using the same rolling windows as in the AR(1) analysis, I compute the Box–Ljung $p$-value for each window and plot the resulting time series in Figure~\ref{fig:rolling_p}. The horizontal line at 0.05 marks the usual 5\% significance level. Windows with $p$-values below this line reject the null hypothesis of no autocorrelation; those above the line do not.
+As before, I use rolling windows of 28 days. For each window, the test produces a \emph{$p$-value} between 0 and 1:
+\begin{itemize}
+  \item A high $p$-value (above 0.05) suggests that the returns in that window look mostly random, with no strong pattern.
+  \item A low $p$-value (below 0.05) suggests that there is some detectable pattern or dependence across days.
+\end{itemize}
+
+Figure~\ref{fig:rolling_p} shows the $p$-values over time. The horizontal line at 0.05 marks the usual cutoff: points above the line indicate no clear pattern, while points below the line indicate some evidence of a pattern.
 
 \begin{figure}[h!]
   \centering
   \includegraphics[width=0.8\textwidth]{plots/bitcoin_rolling_pvalues.png}
-  \caption{Rolling 28-day Box--Ljung $p$-values for daily Bitcoin returns (lag 1).}
+  \caption{Rolling 28 day Box--Ljung $p$-values for daily Bitcoin returns.}
   \label{fig:rolling_p}
 \end{figure}
 
-Most of the time, the $p$-values lie above 0.05, meaning that we do not find strong evidence of autocorrelation in the returns. There are some windows where the $p$-values dip below 0.05, indicating short periods where returns show statistically significant dependence over time. However, just as in the AR(1) analysis, these departures from the null are isolated rather than persistent. 
+In most windows, the $p$-values lie above 0.05, meaning that the test sees the returns as essentially random. There are a few windows where the $p$-values fall below 0.05, indicating short periods in which returns appear to be somewhat more structured, but these episodes are isolated and do not persist.
 
-For a non-specialist reader, the takeaway is that the Box–Ljung test mostly sees Bitcoin returns as behaving like random noise, with only occasional episodes of detectable autocorrelation. This again lines up with the weak-form EMH: there is no consistent pattern in the data that would allow an investor to build a simple “look at yesterday’s return” trading strategy and earn reliably superior profits.
+This suggests that Bitcoin’s daily returns behave much like a random process, at least from the perspective of simple day to day predictability.
 
 % ================================================================
 \section*{Conclusion}
 
-This project uses daily Bitcoin price data from FRED to test the weak-form Efficient Market Hypothesis. After converting prices to daily log returns, I find that the price series is non-stationary, while the return series is stationary, which is consistent with standard financial theory. Descriptive statistics show that Bitcoin is extremely volatile, with large swings in both prices and daily returns.
+I find that Bitcoin’s price level moves over an enormous range, but its day to day percentage changes fluctuate around a small average, with a lot of volatility. 
 
-Rolling AR(1) regressions and Box–Ljung tests provide a more detailed look at short-run predictability. Both approaches suggest that while there are occasional short periods with statistically significant autocorrelation, these episodes are not long-lasting and do not form a stable pattern over time. Most windows show no strong evidence that yesterday’s return helps to predict today’s return.
+The rolling analyses focus on whether we can predict tomorrow’s return using past information. The rolling 28 day regressions show that yesterday’s return rarely offers a strong or consistent signal about today’s return. The rolling Box--Ljung tests tell the same story, that most windows show no strong evidence of patterns in returns, and the few signs of predictability that do appear are short.
 
-Taken together, the empirical results for Bitcoin daily returns are broadly consistent with the weak-form EMH. The return series behaves much like a noisy, mean-reverting process with limited and unstable predictability. Although Bitcoin is an unconventional and highly volatile asset, its daily return behavior does not strongly contradict the idea that past price information alone cannot be used to systematically “beat the market.”
+The main takeaway is that Bitcoin’s daily returns are very hard to predict using only past price movements. While Bitcoin is extremely volatile and sometimes experiences dramatic highs and lows, the day to day changes themselves mostly resemble random noise from the perspective of forecasting. This behavior is consistent with the weak form Efficient Market Hypothesis.
 
 % ================================================================
 \section*{Appendix: R Code for Part II}
 
-The R code used to download the data, compute returns, produce the plots, and generate the LaTeX table for descriptive statistics is included below.
+My R code used to download the data, compute returns, produce the plots, and generate the \LaTeX{} table for descriptive statistics is included below.
 
 \lstinputlisting{emh.R}
 
